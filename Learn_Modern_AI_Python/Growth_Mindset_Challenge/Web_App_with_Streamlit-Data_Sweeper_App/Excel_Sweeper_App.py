@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 from io import BytesIO
+import matplotlib.pyplot as plt
 
 # --- Streamlit App Config ---
 st.set_page_config(page_title="Excel/csv Data Sweeper App by Tariq Rahim", layout="wide")
@@ -69,14 +70,23 @@ def data_cleaning_ui(df, file):
 # --- Column Selection ---
 def column_selector_ui(df, file):
     st.subheader("🎯 Select Columns to Convert")
-    cols = st.multiselect(f"Choose Columns for {file.name}", df.columns, default=df.columns)
-    return df[cols]
+    col1 = st.multiselect(f"Choose Columns for Graph 1 ({file.name})", df.columns, default=df.columns[:1], key=f"{file.name}_cols1")
+    col2 = st.multiselect(f"Choose Columns for Graph 2 ({file.name})", df.columns, default=df.columns[:1], key=f"{file.name}_cols2")
+    col3 = st.multiselect(f"Choose Columns for Graph 3 ({file.name})", df.columns, default=df.columns[:1], key=f"{file.name}_cols3")
+    return col1, col2, col3
 
 # --- Visualization ---
-def show_visualization_ui(df, file):
+def show_visualization_ui(df, file, col1, col2, col3):
     st.subheader("📊 Data Visualization")
-    if st.checkbox(f"Show Visualization for {file.name}"):
-        st.bar_chart(df.select_dtypes(include='number').iloc[:, :2])
+
+    if st.checkbox(f"Show Graph 1 for {file.name}"):
+        st.bar_chart(df[col1])
+
+    if st.checkbox(f"Show Graph 2 for {file.name}"):
+        st.line_chart(df[col2])
+
+    if st.checkbox(f"Show Graph 3 for {file.name}"):
+        st.area_chart(df[col3])
 
 # --- File Converter ---
 def convert_file_ui(df, file, ext):
@@ -123,8 +133,8 @@ def main():
             st.dataframe(df.head())
 
             df = data_cleaning_ui(df, file)
-            df = column_selector_ui(df, file)
-            show_visualization_ui(df, file)
+            col1, col2, col3 = column_selector_ui(df, file)
+            show_visualization_ui(df, file, col1, col2, col3)
             convert_file_ui(df, file, ext)
 
         st.success("🎉 All files processed successfully!")
