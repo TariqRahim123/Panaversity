@@ -5,7 +5,7 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 
 # --- Streamlit App Config ---
-st.set_page_config(page_title="Unit Converter App", layout="wide")
+st.set_page_config(page_title="Unit Converter App by Tariq Rahim", layout="wide")
 
 # --- Styling ---
 def inject_css():
