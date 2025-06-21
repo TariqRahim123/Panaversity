@@ -1,0 +1,10 @@
+streamlit
+pandas
+plotly
+xlsxwriter
+openpyxl
+pdfkit
+vl-convert-python
+altair_saver
+altair_saver
+openpyxl
