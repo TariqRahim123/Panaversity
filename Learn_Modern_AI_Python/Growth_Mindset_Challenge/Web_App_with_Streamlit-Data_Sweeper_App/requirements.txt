@@ -6,3 +6,4 @@ openpyxl
 pdfkit
 vl-convert-python
 altair-saver
+matplotlib
