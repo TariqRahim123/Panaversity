@@ -4,4 +4,5 @@ plotly
 xlsxwriter
 openpyxl
 pdfkit
-openpyxl
+vl-convert-python
+altair-saver
