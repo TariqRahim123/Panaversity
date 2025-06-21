@@ -4,7 +4,7 @@ import os
 from io import BytesIO
 
 # --- Streamlit App Config ---
-st.set_page_config(page_title="Excel Sweeper App by Tariq Rahim", layout="wide")
+st.set_page_config(page_title="Excel/csv Data Sweeper App by Tariq Rahim", layout="wide")
 
 # --- Custom CSS Styling ---
 def inject_custom_css():
